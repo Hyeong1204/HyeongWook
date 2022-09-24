@@ -1,32 +1,24 @@
 #include <stdio.h>
 
-// 함수로 전달된 인자값을 받는 변수를 매개변수(Parameter)
-int add(int a, int b) {   // call by value
-	return a + b;
+// a변수의 값과 b변수의 값을 바꾸세요.
+// a = 30;
+// b = 20;
+void Swap(int* pa, int* pb) {
+	int temp = *pa;
+	*pa = *pb;
+	*pb = temp;
 }
 
-void padd(int* pa, int* pb, int* pret) { // call by address
-	*pret = *pa + *pb;
-}
-
-
-// 함수를 호출할때 인자값의 전달 방식
-// Call by Value (값의 의한 호출)
-// Call by Address   (주소의 의한 호출)
 
 int main() {
-	int a = 10;
-	int b = 20;
+	int a = 20;
+	int b = 30;
 
-	int ret = add(a, b);   // 함수를 호출할때 전달하는 값을 인자(argument)
+	printf("a = %d, b = %d\n", a, b);
 
-	printf("%d + %d = %d\n", a, b, ret);
+	Swap(&a, &b);
 
-	a = 40;
-	b = 50;
-	padd(&a, &b, &ret);
-	printf("%d + %d = %d\n", a, b, ret);
-
+	printf("a = %d, b = %d\n", a, b);
 
 	return 0;
 }
