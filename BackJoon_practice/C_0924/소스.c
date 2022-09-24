@@ -5,35 +5,26 @@ struct tagStudent {		// 구조체 (사용자 정의 데이터 타입)
 	int Age;	// 나이
 	int Grade;	// 학년
 	int ClassNum;	// 반번호
-	struct tagStudent* Next;		// 다음 학생 노드의 주소값 저장
+	
 };
 
 typedef struct tagStudent Student;
 
 int main(void) {
 	
-	Student a;
-	Student b;
-	Student c;
+	Student array[10];	// 구조체 배열
 
-	a.No = 1234;
-	a.Age = 12;
-	a.Grade = 2;
-	a.Next = &b;
+	for (int i = 0; i < 10; i++) {
+		array[i].No = i;
+		array[i].Age = i + 8;
+		array[i].Grade = i % 3 + 1;		// 1~4 나옴
+	}
 
-	b.No = 2345;
-	b.Age = 11;
-	b.Grade = 4;
-	b.Next = &c;
-
-	c.No = 3456;
-	c.Age = 12;
-	c.Grade = 5;
-	c.Next = NULL;
-
-	printf("a.Next->Next->No = %d, a.Next->Next->Age = %d, a.Next->Next->Grade = %d\n",
-		a.Next->Next->No, a.Next->Next->Age, a.Next->Next->Grade);
-
+	for (int i = 0; i < 10; i++) {
+		printf("array[%d].NO = %d\n", i, array[i].No);
+		printf("array[%d].Age = %d\n", i, array[i].Age);
+		printf("array[%d].Grade = %d\n", i, array[i].Grade);
+	}
 
 	return 0;
 }
