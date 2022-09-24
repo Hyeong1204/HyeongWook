@@ -1,54 +1,32 @@
 #include <stdio.h>
 
-// 명령어를 하나로 묶어주는 기능이 있습니다.
-// 함수
-
-// returntype 함수명(매개변수){
-// 명령어 나열.
-//}
-
-// 함수안에 명령어를 처리하고 결과값이 없는 경우에는 void라고 지정하시면 됩니다.
-
-
-void PrintMonster() {
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
-    printf("Monster is World!!\n");
+// 함수로 전달된 인자값을 받는 변수를 매개변수(Parameter)
+int add(int a, int b) {   // call by value
+	return a + b;
 }
 
-// 함수를 사용하면
-// 1. 재사용성
-// 2. 모듈성
-// 3. 가독성( 소스코드 분석하기 쉬워진다.)
-void PrintMonsterNum(int count) {
-    for (int i = 0; i < count; i++) {
-        printf("Monster is World!!\n");
-    }
+void padd(int* pa, int* pb, int* pret) { // call by address
+	*pret = *pa + *pb;
 }
 
-// main.함수는 특별한 용도로 사용됩니다.
-// C언어로 만들어진 프로그램은 main함수에서부터 프로그램이 시작됩니다.
-// 그래서 main함수를 진입점 함수라고 합니다.
+
+// 함수를 호출할때 인자값의 전달 방식
+// Call by Value (값의 의한 호출)
+// Call by Address   (주소의 의한 호출)
+
 int main() {
+	int a = 10;
+	int b = 20;
 
-    PrintMonsterNum(10);
-    ///.......
+	int ret = add(a, b);   // 함수를 호출할때 전달하는 값을 인자(argument)
+
+	printf("%d + %d = %d\n", a, b, ret);
+
+	a = 40;
+	b = 50;
+	padd(&a, &b, &ret);
+	printf("%d + %d = %d\n", a, b, ret);
 
 
-    PrintMonster();
-    //.....
-
-    PrintMonster();
-
-
-
-
-    return 0;
+	return 0;
 }
