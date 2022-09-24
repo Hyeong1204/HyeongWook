@@ -1,30 +1,38 @@
 #include <stdio.h>
 
+struct Student {		// 구조체 (사용자 정의 데이터 타입)
+	int No;		// 학번	(구조체 멤버)
+	int Age;	// 나이
+	int Grande;	// 학년
+	int ClassNum;	// 반번호
+};
+
+
 int main(void) {
 	
-	// 데이터를 순차적으로 저장해야 할 때가 있습니다.
-	// 우리는 배열을 사용합니다.
+	// 학생관리용 프로그램.
+	// 학번, 이름, 나이, 성별, 학년
 
-	// DataType 배열명[배열의 개수];
+	//int No;		// 학번
+	//int Age;	// 나이
+	//int Grande;	// 학년
+	//int ClassNum;	// 반번호
 
-	float heightArray[10];
+	// 100명
+	// 배열을 쓴다
 
-	for (int i = 0; i < 10; i++) {
-		heightArray[i] = 1.2f * i;
-	}
+	// 하지만 더  좋은 방법이 있다.
+	// 구조체
+	struct Student a;
 
-	for (int i = 0; i < 10; i++) {
-		if (heightArray[i] == 3.6f) {
-			printf("3.6f는 배열의 %d 번째 들어있습니다. \n", i);
-		}
-	}
+	// 구조체 변수의 멤버 접근할때는 .(period) 연산자를 사용
+	a.No = 123;
+	a.Age = 10;
+	a.Grande = 2;
+	a.ClassNum = 11;
 
-	float sum = 0.0f;
-	for (int i = 0; i < 10; i++) {
-		sum += heightArray[i];
-	}
+	printf("a.No = %d, a.Age = %d, a.Grade = %d, a.ClassNum = %d\n", a.No, a.Age, a.Grande, a.ClassNum);
 
-	printf("배열안에 들은 숫자의 합계는 : %f입니다.\n", sum);
 
 	return 0;
 }
