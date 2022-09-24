@@ -1,29 +1,38 @@
 #include <stdio.h>
 
-struct Student {		// 구조체 (사용자 정의 데이터 타입)
+struct tagStudent {		// 구조체 (사용자 정의 데이터 타입)
 	int No;		// 학번	(구조체 멤버)
 	int Age;	// 나이
 	int Grade;	// 학년
 	int ClassNum;	// 반번호
+	struct tagStudent* Next;		// 다음 학생 노드의 주소값 저장
 };
+
+typedef struct tagStudent Student;
 
 int main(void) {
 	
-	struct Student a;
-	struct Student* pa = &a;
+	Student a;
+	Student b;
+	Student c;
 
-	// 구조체의 멤버에 접근할때 구조체 변수의 주소값으로 접근하는 경우에는
-	// ->(화살표연산자)로 접근해야 한다.
+	a.No = 1234;
+	a.Age = 12;
+	a.Grade = 2;
+	a.Next = &b;
 
-	pa->No = 23454;
-	pa->Age = 11;
-	pa->Grade = 2;
-	pa->ClassNum = 5;
+	b.No = 2345;
+	b.Age = 11;
+	b.Grade = 4;
+	b.Next = &c;
 
-	printf("pa->No = %d, pa->Age = %d, pa->Grade = %d, pa->ClassNum = %d\n"
-		, pa->No, pa->Age, pa->Grade, pa->ClassNum);
+	c.No = 3456;
+	c.Age = 12;
+	c.Grade = 5;
+	c.Next = NULL;
 
-
+	printf("a.Next->Next->No = %d, a.Next->Next->Age = %d, a.Next->Next->Grade = %d\n",
+		a.Next->Next->No, a.Next->Next->Age, a.Next->Next->Grade);
 
 
 	return 0;
