@@ -10,22 +10,18 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            string a;
+            int[] a;
+            
+            a = solution(2000);
 
-            a = solution("dfjardstddetckdaccccdegk", 4);
-
-            string solution(string cipher, int code)
+            int[] solution(int money)
             {
-                {
-                    // slice 조각수, n 인원수
-                    string answer = "";
-                    for (int i = 1; i < cipher.Length / code + 1; i++)
-                    {
-                        answer += cipher.Substring(i * code - 1, 1);
-                    }
+                int[] answer = new int[2];      // 배열 생성
+                   
+                answer[0] = money / 5500;       // 몇 잔
+                answer[1] = money % 5500;       // 거스름 돈
 
-                    return answer;
-                }
+                return answer;
             }
         }
     }
