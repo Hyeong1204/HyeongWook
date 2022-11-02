@@ -11,15 +11,17 @@ namespace Test
         static void Main(string[] age)
         {
             int[] a;
-            
-            a = solution(2000);
+            int[] b = { 1, 2, 100, -99, 1, 2, 3 };
+            a = solution(b);
 
-            int[] solution(int money)
+            int[] solution(int[] numbers)
             {
-                int[] answer = new int[2];      // 배열 생성
-                   
-                answer[0] = money / 5500;       // 몇 잔
-                answer[1] = money % 5500;       // 거스름 돈
+                int[] answer = new int[numbers.Length];         // 입력 배열 크기만큼 생성
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    answer[i] = numbers[i] *= 2;
+                }
 
                 return answer;
             }
