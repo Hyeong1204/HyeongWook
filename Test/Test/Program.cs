@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,17 +11,17 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            int[] a;
-            int[] b = { 1, 2, 100, -99, 1, 2, 3 };
-            a = solution(b);
+            string[] b = { "We", "are", "the", "world!" };
 
-            int[] solution(int[] numbers)
+            int[] a = solution(b);
+
+            int[] solution(string[] strlist)
             {
-                int[] answer = new int[numbers.Length];         // 입력 배열 크기만큼 생성
+                int[] answer = new int[strlist.Length];
 
-                for (int i = 0; i < numbers.Length; i++)
+                for (int i = 0; i < answer.Length; i++)
                 {
-                    answer[i] = numbers[i] *= 2;
+                    answer[i] = strlist[i].Length;
                 }
 
                 return answer;
