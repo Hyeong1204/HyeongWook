@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace Test
 {
@@ -6,25 +7,21 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            int b = 3;
-            string c = "abcdef123";
-            string[] a = solution(c, b);
+            int[,] b = { {3, 5 }, { 4, 1 }, { 2, 4 }, { 5, 10 } };
 
-            string[] solution(string my_str, int n)
+            int a = solution(b);
+
+            int solution(int[,] dots)
             {
-                int ea = c.Length % n == 0 ? c.Length / n : c.Length / n + 1;
+                int answer = 0;
 
-                string[] answer = new string[ea];
-
-                for (int i = 0; i < answer.Length; i++)
+                if (((double)dots[1, 1] - dots[0, 1]) / ((double)dots[1, 0] - dots[0, 0]) == ((double)dots[3, 1] - dots[2, 1]) / ((double)dots[3, 0] - dots[2, 0]))
                 {
-                    if(answer.Length - 1 == i)
-                    {
-                        answer[i] = my_str.Substring(i * n, my_str.Length - i * n);
-                        break;
-                    }
-
-                    answer[i] = my_str.Substring(i * n, n);
+                    return 1;
+                }
+                if (((double)dots[2, 1] - dots[0, 1]) / ((double)dots[2, 0] - dots[0, 0]) == ((double)dots[3, 1] - dots[1, 1]) / ((double)dots[3, 0] - dots[1, 0]))
+                {
+                    return 1;
                 }
 
                 return answer;
@@ -32,3 +29,4 @@ namespace Test
         }
     }
 }
+
