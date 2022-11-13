@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Test
 {
@@ -11,17 +6,25 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            string[] b = { "We", "are", "the", "world!" };
+            int b = 3;
+            string c = "abcdef123";
+            string[] a = solution(c, b);
 
-            int[] a = solution(b);
-
-            int[] solution(string[] strlist)
+            string[] solution(string my_str, int n)
             {
-                int[] answer = new int[strlist.Length];
+                int ea = c.Length % n == 0 ? c.Length / n : c.Length / n + 1;
+
+                string[] answer = new string[ea];
 
                 for (int i = 0; i < answer.Length; i++)
                 {
-                    answer[i] = strlist[i].Length;
+                    if(answer.Length - 1 == i)
+                    {
+                        answer[i] = my_str.Substring(i * n, my_str.Length - i * n);
+                        break;
+                    }
+
+                    answer[i] = my_str.Substring(i * n, n);
                 }
 
                 return answer;
