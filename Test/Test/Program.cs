@@ -7,21 +7,24 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            int[,] b = { {3, 5 }, { 4, 1 }, { 2, 4 }, { 5, 10 } };
+            int[] b = { 10, 15, 9, 5, 23, 1 };
 
-            int a = solution(b);
+            int a = solution(b, 3);
 
-            int solution(int[,] dots)
+            int solution(int[] array, int n)
             {
                 int answer = 0;
+                int count = 9999;
+                
+                //Array.Sort(array);
 
-                if (((double)dots[1, 1] - dots[0, 1]) / ((double)dots[1, 0] - dots[0, 0]) == ((double)dots[3, 1] - dots[2, 1]) / ((double)dots[3, 0] - dots[2, 0]))
+                for (int i = 0; i < array.Length; i++)
                 {
-                    return 1;
-                }
-                if (((double)dots[2, 1] - dots[0, 1]) / ((double)dots[2, 0] - dots[0, 0]) == ((double)dots[3, 1] - dots[1, 1]) / ((double)dots[3, 0] - dots[1, 0]))
-                {
-                    return 1;
+                    if (count > Math.Abs(array[i] - n))
+                    {
+                        count = Math.Abs(array[i] - n);
+                        answer = array[i];
+                    }
                 }
 
                 return answer;
