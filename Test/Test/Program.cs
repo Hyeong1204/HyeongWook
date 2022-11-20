@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Numerics;
 using System.Text;
 
 namespace Test
@@ -9,35 +10,26 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            string b = ".... . .-.. .-.. ---";
+            string[] b = { "programmer02", "1145"};
+            string[,] c = { { "programmer02", "111111" }, { "programmer00", "134" }, { "programmer01", "1145" } };
 
-            string a = solution(b);
+            string a = solution(b, c);
 
-            string solution(string letter)
+            string solution(string[] id_pw, string[,] db)
             {
-                string answer = "";
-                string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-                    "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.",
-                    "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
-
-                string[] morses = letter.Split(' ');
-
-                Dictionary<string,char> map = new Dictionary<string, char>();
-                for (int i = 0; i < morse.Length; i++)
+                string answer = "fail";
+                for (int j = 0; j < db.Length >> 1; j++)
                 {
-                    map.Add(morse[i], Convert.ToChar(97+i));
-                }
-
-                for (int i = 0; i < morses.Length; i++)
-                {
-                    foreach (var item in map)
+                    if (id_pw[0] == db[j, 0])
                     {
-                        if (morses[i] == item.Key)
+                        answer = "wrong pw";
+                        if (id_pw[1] == db[j, 1])
                         {
-                            answer += item.Value;
+                            answer = "login";
                         }
                     }
                 }
+                
 
                 return answer;
             }
