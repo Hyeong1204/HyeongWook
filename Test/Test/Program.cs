@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Text;
 
 namespace Test
 {
@@ -7,23 +9,33 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            int[] b = { 10, 15, 9, 5, 23, 1 };
+            string b = ".... . .-.. .-.. ---";
 
-            int a = solution(b, 3);
+            string a = solution(b);
 
-            int solution(int[] array, int n)
+            string solution(string letter)
             {
-                int answer = 0;
-                int count = 9999;
-                
-                //Array.Sort(array);
+                string answer = "";
+                string[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                    "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.",
+                    "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.." };
 
-                for (int i = 0; i < array.Length; i++)
+                string[] morses = letter.Split(' ');
+
+                Dictionary<string,char> map = new Dictionary<string, char>();
+                for (int i = 0; i < morse.Length; i++)
                 {
-                    if (count > Math.Abs(array[i] - n))
+                    map.Add(morse[i], Convert.ToChar(97+i));
+                }
+
+                for (int i = 0; i < morses.Length; i++)
+                {
+                    foreach (var item in map)
                     {
-                        count = Math.Abs(array[i] - n);
-                        answer = array[i];
+                        if (morses[i] == item.Key)
+                        {
+                            answer += item.Value;
+                        }
                     }
                 }
 
