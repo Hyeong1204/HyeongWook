@@ -10,28 +10,36 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            string[] b = { "programmer02", "1145"};
-            string[,] c = { { "programmer02", "111111" }, { "programmer00", "134" }, { "programmer01", "1145" } };
+            int[,] b = { { 80, 70 }, { 70, 80 }, { 30, 50 }, { 90, 100 }, { 100, 90 }, { 100, 100 }, { 10, 30 } };
+            int[] a = solution(b);
 
-            string a = solution(b, c);
-
-            string solution(string[] id_pw, string[,] db)
+            int[] solution(int[,] score)
             {
-                string answer = "fail";
-                for (int j = 0; j < db.Length >> 1; j++)
+                int[] sum = new int[score.Length>>1];
+                int[] rank= new int[score.Length>>1];
+                int count = 1;
+                for (int i = 0; i < sum.Length; i++)
                 {
-                    if (id_pw[0] == db[j, 0])
+                    sum[i] = score[i, 0] + score[i, 1];
+                }
+
+                for (int i = 0; i < rank.Length; i++)
+                {
+                    for (int j = 0; j < rank.Length; j++)
                     {
-                        answer = "wrong pw";
-                        if (id_pw[1] == db[j, 1])
+                        if(i != j)
                         {
-                            answer = "login";
+                            if (sum[i] < sum[j])
+                            {
+                                count++;
+                            }
                         }
                     }
+                    rank[i] = count;
+                    count = 1;
                 }
-                
 
-                return answer;
+                return rank;
             }
         }
     }
