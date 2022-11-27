@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Numerics;
 using System.Text;
@@ -10,36 +11,49 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            int[,] b = { { 80, 70 }, { 70, 80 }, { 30, 50 }, { 90, 100 }, { 100, 90 }, { 100, 100 }, { 10, 30 } };
-            int[] a = solution(b);
+            string b = "1 1 1 1 1 Z Z Z Z 1";
+            int a = solution(b);
 
-            int[] solution(int[,] score)
+            int solution(string s)
             {
-                int[] sum = new int[score.Length>>1];
-                int[] rank= new int[score.Length>>1];
-                int count = 1;
-                for (int i = 0; i < sum.Length; i++)
-                {
-                    sum[i] = score[i, 0] + score[i, 1];
-                }
+                int answer = 0;
+                int Num = 0;
+                List<int> templist = new List<int>();
+                int count = 0;
+                string[] word = s.Split(' ');
 
-                for (int i = 0; i < rank.Length; i++)
+                for (int i = 0; i < word.Length; i++)
                 {
-                    for (int j = 0; j < rank.Length; j++)
+                    if(i == 0 && word[0] == "Z")
                     {
-                        if(i != j)
-                        {
-                            if (sum[i] < sum[j])
-                            {
-                                count++;
-                            }
-                        }
+                        continue;
                     }
-                    rank[i] = count;
-                    count = 1;
+                    if(i != 0 && word[i] == "Z" && word[i - 1] == "Z")
+                    {
+                        count++;
+
+                        if(answer == 0)
+                        {
+                            continue;
+                        }
+
+                        answer -= templist[templist.Count - count - 1];
+
+                        continue;
+                    }
+                    if (int.TryParse(word[i], out Num))
+                    {
+                        answer += Num;
+                        templist.Add(Num);
+                        count = 0;
+                    }
+                    else
+                    {
+                        answer = answer - templist.Last();
+                    }
                 }
 
-                return rank;
+                return answer;
             }
         }
     }
