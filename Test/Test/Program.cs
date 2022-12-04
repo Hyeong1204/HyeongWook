@@ -11,15 +11,18 @@ namespace Test
     {
         static void Main(string[] age)
         {
-            int[] b = { 0, 0, 0, 0, 0, 0, 0, 0, 3, 4, 3 };
-            int[] a = solution(10, b);
+            int[] b = { -3,-1,0,2 };
+            int[] c = {1,2,3,4};
+            int a = solution(c, b);
 
-            int[] solution(int n, int[] info)
+            int solution(int[] d, int[] f)
             {
-                int[] answer = new int[info.Length];
+                int answer = 0;
 
-                for (int i = 0; i < info.Length; i++)
+                for (int i = 0; i < d.Length; i++)
                 {
+
+                    answer += d[i] * f[i];
 
                 }
 
